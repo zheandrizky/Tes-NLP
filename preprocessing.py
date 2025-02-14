@@ -42,7 +42,7 @@ def preprocess_text(text):
     return " ".join(tokens)
 
 # Membaca dataset
-file_path = '/content/drive/MyDrive/Dataset/dataset_berita_nlp_100.csv'  # Sesuaikan path jika perlu
+file_path = '/dataset_berita_nlp_100.csv'  # Sesuaikan path jika perlu
 df = pd.read_csv(file_path)
 
 # Memeriksa data yang hilang
