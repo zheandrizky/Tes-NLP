@@ -1,6 +1,6 @@
 import streamlit as st
 import joblib
-#from preprocessing import preprocess_text  # Import fungsi preprocessing
+from preprocessing import preprocess_text  # Import fungsi preprocessing
 
 # Muat model dan TF-IDF vectorizer
 model = joblib.load("model.pkl")
