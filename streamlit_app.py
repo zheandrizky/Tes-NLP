@@ -1,42 +1,32 @@
 import streamlit as st
-import pandas as pd
 import joblib
+import pandas as pd
+from preprocess import preprocess_text
 from sklearn.feature_extraction.text import TfidfVectorizer
-from preprocessing import preprocess_text  # Mengimpor fungsi preprocessing dari file preprocessing.py
 
-# Memuat model dan TF-IDF vectorizer yang sudah disimpan
-model = joblib.load('model.pkl')
-tfidf = joblib.load('tfidf.pkl')
+# Memuat model dan TF-IDF vectorizer
+model = joblib.load("model.pkl")
+tfidf = joblib.load("tfidf.pkl")
 
-# Judul Aplikasi
-st.title('Prediksi Kategori Berita')
+# Judul aplikasi
+st.title("Klasifikasi Berita dengan NLP")
 
-# Upload file dataset atau pilih file yang sudah ada
-st.sidebar.header('Upload File CSV')
-uploaded_file = st.sidebar.file_uploader("Pilih file dataset", type=["csv"])
+# Input dari pengguna
+user_input = st.text_area("Masukkan teks berita:")
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-else:
-    # Jika file tidak diupload, menggunakan dataset yang sudah ada
-    df = pd.read_csv('dataset_berita_nlp_100.csv')
-
-# Menampilkan beberapa baris data
-st.write("Data yang dimuat:", df.head())
-
-# Preprocessing Text
-st.sidebar.header('Preprocessing')
-text_input = st.text_area("Masukkan Berita untuk Prediksi")
-
-if text_input:
-    # Melakukan preprocessing pada teks input
-    clean_text = preprocess_text(text_input)
+# Ketika tombol diklik
+if st.button("Klasifikasi"):
+    # Preprocessing teks
+    processed_text = preprocess_text(user_input)
     
-    # Mengubah teks input menjadi vektor dengan TF-IDF
-    tfidf_vector = tfidf.transform([clean_text])
+    # Mengubah teks yang diproses menjadi representasi TF-IDF
+    tfidf_vector = tfidf.transform([processed_text])
     
-    # Prediksi kategori dengan model
-    prediction = model.predict(tfidf_vector)
-    predicted_category = model.classes_[prediction[0]]
+    # Prediksi kategori berita
+    pred_label = model.predict(tfidf_vector)[0]
     
-    st.write(f"Kategori yang diprediksi: {predicted_category}")
+    # Decode label ke kategori yang sesuai
+    pred_category = model.classes_[pred_label]
+    
+    # Tampilkan hasil prediksi
+    st.write(f"Prediksi Kategori: {pred_category}")
