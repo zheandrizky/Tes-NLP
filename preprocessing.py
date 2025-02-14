@@ -72,7 +72,7 @@ df.isna().sum()
 
 print(df.isnull().sum())
 
-!pip install Sastrawi
+pip install Sastrawi
 
 import nltk
 nltk.download('punkt_tab')
