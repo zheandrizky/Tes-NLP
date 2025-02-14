@@ -1,36 +1,25 @@
 import streamlit as st
 import joblib
-import pandas as pd
-from preprocessing import preprocess_text
-from sklearn.feature_extraction.text import TfidfVectorizer
+from preprocessing import preprocess_text  # Mengimpor preprocessing dari file preprocessing.py
 
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-
-# Memuat model dan TF-IDF vectorizer
+# Load model dan TF-IDF yang sudah dilatih
 model = joblib.load("model.pkl")
 tfidf = joblib.load("tfidf.pkl")
 
-# Judul aplikasi
+# Setup Streamlit app
 st.title("Klasifikasi Berita dengan NLP")
 
-# Input dari pengguna
+# Input dari user
 user_input = st.text_area("Masukkan teks berita:")
 
-# Ketika tombol diklik
 if st.button("Klasifikasi"):
-    # Preprocessing teks
+    # Proses teks input
     processed_text = preprocess_text(user_input)
     
-    # Mengubah teks yang diproses menjadi representasi TF-IDF
+    # Transformasi teks ke format TF-IDF
     tfidf_vector = tfidf.transform([processed_text])
     
-    # Prediksi kategori berita
+    # Prediksi kategori
     pred_label = model.predict(tfidf_vector)[0]
-    
-    # Decode label ke kategori yang sesuai
-    pred_category = model.classes_[pred_label]
-    
-    # Tampilkan hasil prediksi
+    pred_category = model.classes_[pred_label]  # Menampilkan kategori hasil prediksi
     st.write(f"Prediksi Kategori: {pred_category}")
