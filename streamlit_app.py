@@ -4,6 +4,10 @@ import pandas as pd
 from preprocessing import preprocess_text
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+
 # Memuat model dan TF-IDF vectorizer
 model = joblib.load("model.pkl")
 tfidf = joblib.load("tfidf.pkl")
