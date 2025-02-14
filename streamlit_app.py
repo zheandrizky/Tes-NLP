@@ -1,7 +1,7 @@
 import streamlit as st
 import joblib
 import pandas as pd
-from preprocess import preprocess_text
+from preprocessing import preprocess_text
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Memuat model dan TF-IDF vectorizer
