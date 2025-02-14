@@ -4,3 +4,4 @@ joblib
 nltk
 Sastrawi
 pandas
+re
