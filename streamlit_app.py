@@ -25,7 +25,7 @@ if st.button("Prediksi Kategori"):
     if user_input:
         # Langkah 4: Preprocessing teks
         processed_text = preprocess_text(user_input)
-        st.write(f"Processed Text: {processed_text}")  # Debugging: Lihat hasil preprocessing
+        # st.write(f"Processed Text: {processed_text}")  # Debugging: Lihat hasil preprocessing
 
         # Langkah 5: Transformasi teks ke dalam format TF-IDF
         tfidf_vector = tfidf.transform([processed_text])
