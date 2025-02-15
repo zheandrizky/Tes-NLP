@@ -6,6 +6,14 @@ from preprocessing import preprocess_text  # Pastikan file preprocessing.py ada 
 model = joblib.load("model.pkl")
 tfidf = joblib.load("tfidf.pkl")
 
+# Membuat mapping kategori
+category_mapping = {
+    0: "Hiburan",
+    1: "Olahraga",
+    2: "Politik",
+    3: "Teknologi"
+}
+
 # Judul aplikasi
 st.title("Prediksi Kategori Berita")
 
@@ -23,7 +31,7 @@ if st.button("Prediksi Kategori"):
 
         # Langkah 6: Prediksi kategori
         pred_label = model.predict(tfidf_vector)[0]
-        pred_category = model.classes_[pred_label]
+        pred_category = category_mapping[pred_label]
 
         # Output prediksi kategori
         st.write(f"Prediksi Kategori: {pred_category}")
