@@ -7,7 +7,7 @@ A simple Streamlit app template for you to modify!
 ### Live App
 
 You can access the live version of your app here:  
-[**Your Streamlit App**](https://tes-nlp-ssfthqf5rgwuaedmuwbqud.streamlit.app/)
+[**Streamlit App**](https://tes-nlp-ssfthqf5rgwuaedmuwbqud.streamlit.app/)
 
 ### How to Run the App Locally
 
