@@ -10,7 +10,7 @@ tfidf = joblib.load("tfidf.pkl")
 st.title("Prediksi Kategori Berita")
 
 # Langkah 2: Input teks berita
-user_input = st.text_area("Masukkan Teks Berita", "Presiden kunjungan ke papua")
+user_input = st.text_area("Masukkan Teks Berita")
 
 # Langkah 3: Button untuk memulai prediksi
 if st.button("Prediksi Kategori"):
