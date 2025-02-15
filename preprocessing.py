@@ -1,12 +1,10 @@
-import re
 import nltk
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+import re
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-
-# Download nltk data yang diperlukan
-nltk.download('punkt')  # Pastikan 'punkt' diunduh untuk tokenisasi
-nltk.download('stopwords')  # Stopwords untuk bahasa Indonesia
 
 # Membuat stemmer menggunakan Sastrawi
 factory = StemmerFactory()
